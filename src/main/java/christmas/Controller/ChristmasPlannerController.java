@@ -34,4 +34,19 @@ public class ChristmasPlannerController {
             }
         }
     }
+
+    private String readOrderedMenu() {
+        while (true) {
+            try {
+                String orderedMenu = InputView.readOrderedMenu();
+                if (orderedMenu.trim().isEmpty()) {
+                    throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                }
+                validateMenu(orderedMenu);
+                return orderedMenu;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError2(e.getMessage());
+            }
+        }
+    }
 }
