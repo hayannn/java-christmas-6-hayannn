@@ -237,31 +237,22 @@
          |   └── ChristmasPlannerController.java        
          |
          ├── domain
-         |   ├── ChristmasDdayDiscount.java
-         |   ├── EventBenefit.java
+         |   ├── Event.java
+         |   ├── Menu.java
          |   ├── EventPlanner.java
-         |   ├── Order.java
-         |   ├── SpecialDiscount.java
-         |   ├── WeekdayDiscount.java
-         |   └── WeekendDiscount.java
+         |   └── Order.java
          |      
          ├── exception
          |   ├── DateException.java
          |   └── MenuException.java
          |
-         ├── repository
-         |   ├── EventBenefitRepository.java
-         |   ├── EventPlannerRepository.java
-         |   └── OrderRepository.java
-         |
          ├── service
-         |   └── ChristmasPlannerService.java
+         |   └── OrderService.java
          |
          ├── Util
-         |   ├── DateValidator.java
-         |   ├── InputParser.java
-         |   ├── MenuValidator.java
-         |   └── OutputFormatter.java
+         |   ├── EventUtil.java
+         |   ├── MenuUtil.java
+         |   └── OrderUtil.java
          |
          ├── View
          |   ├── InputView.java
@@ -277,16 +268,9 @@
 └──  src
     └── test/java/christmas       
          ├── domain
-         |   ├── ChristmasDdayDiscountTest.java
-         |   ├── EventBenefitTest.java
-         |   ├── EventPlannerTest.java
-         |   ├── OrderTest.java
-         |   ├── SpecialDiscountTest.java
-         |   ├── WeekdayDiscountTest.java
-         |   └── WeekendDiscountTest.java
-         |
-         ├── service
-         |   └── ChristmasPlannerServiceTest.java
+         |   ├── EventTest.java
+         |   ├── MenuTest.java
+         |   └── OrderTest.java
          |
          └── ApplicationTest.java
 ```
