@@ -1,9 +1,14 @@
 package christmas.Controller;
 
+import christmas.Domain.Menu;
 import christmas.Exception.DateException;
+import christmas.Exception.MenuException;
 import christmas.Service.OrderService;
+import christmas.Util.MenuUtil;
 import christmas.View.InputView;
 import christmas.View.OutputView;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ChristmasPlannerController {
     public void run() {
@@ -47,6 +52,19 @@ public class ChristmasPlannerController {
             } catch (IllegalArgumentException e) {
                 OutputView.printError2(e.getMessage());
             }
+        }
+    }
+
+    private void validateMenu(String orderedMenu) {
+        List<Menu> menuList = MenuUtil.getMenuList();
+        List<String> menuNames = menuList.stream().map(Menu::getName).collect(Collectors.toList());
+
+        try {
+            int orderCount = getOrderCount(orderedMenu);
+
+            MenuException.checkMenuNameAndCount(menuNames, orderedMenu, orderCount);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] " + e.getMessage());
         }
     }
 }
