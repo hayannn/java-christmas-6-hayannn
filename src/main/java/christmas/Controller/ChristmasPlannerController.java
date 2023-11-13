@@ -1,6 +1,8 @@
 package christmas.Controller;
 
+import christmas.Exception.DateException;
 import christmas.Service.OrderService;
+import christmas.View.InputView;
 import christmas.View.OutputView;
 
 public class ChristmasPlannerController {
@@ -17,6 +19,18 @@ public class ChristmasPlannerController {
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printError2(e.getMessage());
+            }
+        }
+    }
+    private int readDate() {
+        while (true) {
+            try {
+                int date = InputView.readDate();
+                DateException dateException = new DateException();
+                dateException.checkDate(date);
+                return date;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError1(e.getMessage());
             }
         }
     }
