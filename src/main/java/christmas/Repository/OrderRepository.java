@@ -12,7 +12,6 @@ public class OrderRepository {
     private static final Map<String, Integer> menuPrices = MenuPrices();
 
     public static void addOrder(List<Order> orders) {
-        // Check if all menu items in the order are valid
         for (Order order : orders) {
             for (String menu : order.getMenuItems().keySet()) {
                 if (!menuPrices.containsKey(menu)) {
@@ -42,14 +41,12 @@ public class OrderRepository {
     public static Map<String, Integer> MenuPrices() {
         Map<String, Integer> prices = new HashMap<>();
 
-        // Categorize the menu items
         Map<String, List<String>> categorizedMenu = new HashMap<>();
         categorizedMenu.put("<애피타이저>", Arrays.asList("양송이수프", "타파스", "시저샐러드"));
         categorizedMenu.put("<메인>", Arrays.asList("티본스테이크", "바비큐립", "해산물파스타", "크리스마스파스타"));
         categorizedMenu.put("<디저트>", Arrays.asList("초코케이크", "아이스크림"));
         categorizedMenu.put("<음료>", Arrays.asList("제로콜라", "레드와인", "샴페인"));
 
-        // Populate prices map
         for (Map.Entry<String, List<String>> entry : categorizedMenu.entrySet()) {
             for (String menuItem : entry.getValue()) {
                 prices.put(menuItem, getPriceForMenuItem(menuItem));
@@ -97,6 +94,6 @@ public class OrderRepository {
             return 25000;
         }
 
-        return 0; // Default case
+        return 0;
     }
 }
