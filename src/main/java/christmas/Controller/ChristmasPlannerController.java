@@ -67,4 +67,41 @@ public class ChristmasPlannerController {
             throw new IllegalArgumentException("[ERROR] " + e.getMessage());
         }
     }
+
+    private int getOrderCount(String orderedMenu) {
+        String[] menuInfos = orderedMenu.split(",");
+        int orderCount = 0;
+
+        try {
+            for (String menuInfo : menuInfos) {
+                String[] parts = menuInfo.trim().split("-");
+                int quantity = Integer.parseInt(parts[1]);
+                orderCount += quantity;
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+
+        return orderCount;
+    }
+
+    private int getTotalPrice(String orderedMenu) {
+        String[] menuInfos = orderedMenu.split(",");
+        int totalPrice = 0;
+
+        for (String menuInfo : menuInfos) {
+            String[] parts = menuInfo.trim().split("-");
+            String menuName = parts[0];
+            int quantity = Integer.parseInt(parts[1]);
+
+            Menu menu = MenuUtil.getMenu(menuName)
+                    .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 메뉴 이름: " + menuName));
+
+            int itemTotalPrice = menu.getPrice() * quantity;
+
+            totalPrice += itemTotalPrice;
+        }
+        MenuException.exceedMaxOrderCountCase(getOrderCount(orderedMenu));
+        return totalPrice;
+    }
 }
