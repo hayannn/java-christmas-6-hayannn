@@ -131,15 +131,12 @@ public class OrderService {
             if (menu.getCategory() != Menu.Category.DRINK) {
                 isDrinkOnlyOrder = false;
             }
-
             Order order = new Order(menu, menuCount);
             orderList.add(order);
-
-            // Menu processed successfully, no need for return statement
             return;
         }
 
-        System.out.println("주의: " + menuName + " 메뉴를 찾을 수 없습니다.");
+        System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
 
